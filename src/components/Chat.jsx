@@ -2,6 +2,8 @@ import React from 'react'
 import Cam from '../Assets/cam.png'
 import Add from '../Assets/add.png'
 import More from '../Assets/more.png'
+import Messages from './Messages'
+import Input from './Input'
 
 export default function Chat() {
   return (
@@ -14,6 +16,8 @@ export default function Chat() {
           <img src={More} alt="" />
         </div>
       </div>
+      <Messages />
+      <Input />
     </div>
   )
 }
