@@ -165,6 +165,11 @@
       }
     }
 
+    .sidebar__span{
+        font-size: 18px;
+        font-weight: bold;
+    }
+
     .user__chat {
       display: flex;
       align-items: center;
@@ -182,6 +187,23 @@
         height: 50px;
         border-radius: 50%;
         object-fit: cover;
+      }
+
+      .user__chat--info2{
+        margin-top: 6px;
+
+        span{
+            font-size: 18px;
+            font-weight: bold;
+        }
+        p{
+            font-size: 14px;
+            line-height: 0%;
+        }
+
+        .user__chat--span{
+            margin-top: 12px;
+        }
       }
     }
   }
