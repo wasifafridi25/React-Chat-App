@@ -64,6 +64,7 @@
           width: 330px;
           border: none;
           border-bottom: 1px solid rgb(104, 215, 147);
+          outline: none;
 
           &::placeholder {
             color: rgb(175, 175, 175);
@@ -106,6 +107,10 @@
       p {
         color: #5d5b8d;
         font-size: 14px;
+      }
+
+      .error{
+        color: red;
       }
     }
   }
