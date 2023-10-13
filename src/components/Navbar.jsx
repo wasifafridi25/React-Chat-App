@@ -3,6 +3,8 @@ import React from 'react'
 import { auth } from '../Firebase'
 
 export default function Navbar() {
+  
+
   return (
     <div className='navbar'>
       <span className="logo navbar__logo">BSW Chat</span>

@@ -13,6 +13,7 @@ export const AuthContextProvider = ({ children }) => {
   useEffect(() => {
     const unsub = onAuthStateChanged(auth, (user) => {
       setCurrentUser(user);
+      console.log(user)
     });
 
     // when listening to a real time operation use a clean up function to avoid memory leakage need to do this.
@@ -22,6 +23,6 @@ export const AuthContextProvider = ({ children }) => {
   }, []);
 
   return (
-    <AuthContext.Provider value={currentUser}>{children}</AuthContext.Provider>
+    <AuthContext.Provider value={{currentUser}}>{children}</AuthContext.Provider>
   );
 };

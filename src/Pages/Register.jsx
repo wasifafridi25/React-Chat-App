@@ -55,7 +55,7 @@ export default function Register() {
             
             navigate("/");
           });
-        }, 3000)
+        }, 1000)
       );
 
       
