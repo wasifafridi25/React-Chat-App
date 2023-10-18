@@ -17,6 +17,7 @@ export default function Messages() {
       unsub();
     }
   }, [data.chatId])
+  console.log(messages)
 
   return (
     <div className='messages'>
