@@ -14,6 +14,11 @@
       @content;
     }
   }
+  @mixin smallLaptop {
+    @media screen and (max-width: 1065px) {
+      @content;
+    }
+  }
 
   $darkColor: #2f2d52;
   $lightColo: #ddddf7;
@@ -186,9 +191,10 @@
           cursor: pointer;
           padding: 4px;
 
-          @include tablet{
+          @include smallLaptop(){
             position: absolute;
             bottom: 12px;
+            left: 12px;
         }
         }
       }
