@@ -1,5 +1,4 @@
 import { createContext, useContext, useEffect, useReducer, useState } from "react";
-import { auth } from "../Firebase";
 import { AuthContext } from "./AuthContext";
 
 export const ChatContext = createContext();
