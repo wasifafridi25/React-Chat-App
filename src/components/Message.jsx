@@ -12,6 +12,23 @@ export default function Message({ message }) {
     ref.current?.scrollIntoView({behavior: "smooth"});
   }, [message]);
 
+  const formatDate = (timestamp) => {
+    const now = new Date();
+    const messageDate = timestamp.toDate();
+    const diff = now - messageDate;
+
+    if (diff < 60000) {
+      return "Just now";
+    } else if (diff < 3600000) {
+      return `${Math.floor(diff / 60000)}m ago`;
+    } else if (diff < 86400000) {
+      return `${Math.floor(diff / 3600000)}h ago`;
+    } else {
+      const options = { year: "numeric", month: "short", day: "numeric" };
+      return messageDate.toLocaleDateString("en-US", options);
+    }
+  };
+
   return (
     <div
       ref={ref}
@@ -26,7 +43,7 @@ export default function Message({ message }) {
           }
           alt=""
         />
-        <span>Just now</span>
+        <span>{formatDate(message.date)}</span>
       </div>
       <div className="message__content">
         <p>{message.text}</p>

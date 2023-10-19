@@ -396,6 +396,100 @@
       }
     }
   }
+
+  .friends__container{
+    background-color:#7270af;
+    width: 100%;
+    height: 100%;
+    overflow-y: scroll;
+
+    h1{
+      color: #2f2d52;
+    }
+
+    .friends__nav{
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 60px 40px;
+      background-color: #ddddf7;
+
+      .friends__nav--left{
+        display: flex;
+        gap: 8px;
+        align-items: center;
+        justify-content: center;
+
+        .back__link{
+          transition: all 300ms ease;
+          text-decoration: none;
+          h1{
+            &:hover{
+              color: #7270af;
+              
+            }
+            &:active{
+              scale: (0.9);
+            }
+          }
+          
+          
+        }
+
+        .back__img{
+          height: 80px;
+          width: 80px;
+          transition: all 300ms ease;
+
+          &:hover{
+            filter: brightness(0.7);
+          }
+          &:active{
+            scale: (0.9);
+          }
+        }
+      }
+    }
+
+    .friends{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 40px;
+
+      .friend__info{
+        display: flex;
+        gap: 8px;
+      }
+      .friend__img{
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+
+      .friend__add--btn{
+        font-size: 20px;
+        border: none;
+        padding: 12px 24px;
+        background-color:#4a497e;
+        color: #ddddf7;
+        cursor: pointer;
+        transition: all 300ms ease;
+        
+        &:hover{
+          background-color: #8da4f1;
+          color: #4a497e;
+        }
+
+        &:active{
+          scale: (0.9);
+          filter: brightness(0.8);
+        }
+      }
+    }
+  }
 }
 
 

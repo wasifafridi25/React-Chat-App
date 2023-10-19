@@ -10,6 +10,7 @@ import {
 } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "./context/AuthContext";
+import Add_Friend from "./Pages/Add_Friend";
 
 function App() {
   const { currentUser } = useContext(AuthContext);
@@ -27,6 +28,14 @@ function App() {
           element={
             <ProtectedRoute>
               <Home />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/add_friend"
+          element={
+            <ProtectedRoute>
+              <Add_Friend />
             </ProtectedRoute>
           }
         />

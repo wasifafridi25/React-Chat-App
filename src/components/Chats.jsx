@@ -37,7 +37,7 @@ export default function Chats() {
             <span className="user__chat--span">
               {chat[1].userInfo.displayName}
             </span>
-            <p>{chat[1].lastMessage?.text}</p>
+            <p>{chat[1].lastMessage?.text.length > 10 ? `${chat[1].lastMessage.text.substring(0, 10)}...` : chat[1].lastMessage?.text}</p>
           </div>
         </div>
       ))}
