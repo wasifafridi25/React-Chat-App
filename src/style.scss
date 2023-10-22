@@ -461,6 +461,21 @@
       .friend__info{
         display: flex;
         gap: 8px;
+
+        .loading__friend--img{
+          width: 200px;
+          height: 200px;
+          background-color: lightgray;
+          border: none;
+          border-radius: 50%;
+        }
+
+        .loading__friend--name{
+          width: 100px;
+          height: 100px;
+          background-color: lightgray;
+          border: none;
+        }
       }
       .friend__img{
         width: 100px;

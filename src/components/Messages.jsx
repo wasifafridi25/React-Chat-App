@@ -11,15 +11,24 @@ export default function Messages() {
   const [friendSelected, setFriendSelected] = useState(false);
 
   useEffect(() => {
-    const unsub = onSnapshot(doc(db, "chats", data.chatId), (doc) => {
-      doc.exists() && setMessages(doc.data().messages)
-    })
+    if (data.chatId && friendSelected){
 
-    return () => {
-      unsub();
+      const unsub = onSnapshot(doc(db, "chats", data.chatId), (doc) => {
+        doc.exists() && setMessages(doc.data().messages)
+      })
+      
+      return () => {
+        unsub();
+      }
+    }
+  }, [data.chatId, friendSelected])
+  console.log(messages)
+
+  useEffect(() => {
+    if (data.chatId) {
+      setFriendSelected(true)
     }
   }, [data.chatId])
-  console.log(messages)
 
   return (
     <div className='messages'>

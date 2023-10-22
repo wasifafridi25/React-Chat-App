@@ -17,6 +17,7 @@ import { db } from "../Firebase";
 
 export default function Add_Friend() {
   const [friends, setFriends] = useState([]);
+  const [loading, setLoading] = useState(true);
   const { currentUser } = useContext(AuthContext);
 
   const loadUsers = async () => {
@@ -41,7 +42,10 @@ export default function Add_Friend() {
         .filter((user) => !friendUIDs.includes(user.uid));
 
       setFriends(users);
-    } catch (err) {}
+      setLoading(false)
+    } catch (err) {
+      setLoading(false)
+    }
   };
 
   useEffect(() => {
@@ -118,7 +122,22 @@ export default function Add_Friend() {
             <h1 className="friends__nav--heading">Add Friend</h1>
           </div>
 
-          {friends.map((friend) => (
+          {loading ? friends.map((friend) => (
+            <div className="friends">
+              <div className="friend__info">
+                <div className="loading__friend--img"></div>
+                <h1 className="loading__friend--name"></h1>
+              </div>
+              <div>
+                <button
+                  className="friend__add--btn"
+                  onClick={() => addFriend(friend)}
+                >
+                  Add +
+                </button>
+              </div>
+            </div>)) :
+          (friends.map((friend) => (
             <div className="friends">
               <div className="friend__info">
                 <img src={friend.photoURL} alt="" className="friend__img" />
@@ -132,7 +151,7 @@ export default function Add_Friend() {
                   Add +
                 </button>
               </div>
-            </div>
+            </div>)
           ))}
         </div>
       </div>

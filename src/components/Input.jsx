@@ -96,7 +96,6 @@ export default function Input() {
         }}
       />
       <div className="send">
-        <img src={Attach} alt="" />
         <input
           type="file"
           style={{ display: "none" }}
