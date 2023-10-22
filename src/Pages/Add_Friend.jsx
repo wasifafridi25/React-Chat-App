@@ -19,6 +19,7 @@ export default function Add_Friend() {
   const [friends, setFriends] = useState([]);
   const [loading, setLoading] = useState(true);
   const { currentUser } = useContext(AuthContext);
+  const skeletonLoaders = new Array(4).fill(0);
 
   const loadUsers = async () => {
     try {
@@ -42,9 +43,9 @@ export default function Add_Friend() {
         .filter((user) => !friendUIDs.includes(user.uid));
 
       setFriends(users);
-      setLoading(false)
+      setLoading(false);
     } catch (err) {
-      setLoading(false)
+      setLoading(false);
     }
   };
 
@@ -122,37 +123,34 @@ export default function Add_Friend() {
             <h1 className="friends__nav--heading">Add Friend</h1>
           </div>
 
-          {loading ? friends.map((friend) => (
-            <div className="friends">
-              <div className="friend__info">
-                <div className="loading__friend--img"></div>
-                <h1 className="loading__friend--name"></h1>
-              </div>
-              <div>
-                <button
-                  className="friend__add--btn"
-                  onClick={() => addFriend(friend)}
-                >
-                  Add +
-                </button>
-              </div>
-            </div>)) :
-          (friends.map((friend) => (
-            <div className="friends">
-              <div className="friend__info">
-                <img src={friend.photoURL} alt="" className="friend__img" />
-                <h1 className="friend__name">{friend.displayName}</h1>
-              </div>
-              <div>
-                <button
-                  className="friend__add--btn"
-                  onClick={() => addFriend(friend)}
-                >
-                  Add +
-                </button>
-              </div>
-            </div>)
-          ))}
+          {loading
+            ? skeletonLoaders.map((_, index) => (
+                <div className="friends" key={index}>
+                  <div className="friend__info">
+                    <div className="loading__friend--img"></div>
+                    <h1 className="loading__friend--name"></h1>
+                  </div>
+                  <div>
+                    <button className="friend__add--btn">Add +</button>
+                  </div>
+                </div>
+              ))
+            : friends.map((friend) => (
+                <div className="friends" key={friend.uid}>
+                  <div className="friend__info">
+                    <img src={friend.photoURL} alt="" className="friend__img" />
+                    <h1 className="friend__name">{friend.displayName}</h1>
+                  </div>
+                  <div>
+                    <button
+                      className="friend__add--btn"
+                      onClick={() => addFriend(friend)}
+                    >
+                      Add +
+                    </button>
+                  </div>
+                </div>
+              ))}
         </div>
       </div>
     </div>
