@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
 import Back from "../Assets/back.png";
-import Img from "../Assets/jessica.jpg";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import {
@@ -9,6 +8,9 @@ import {
   getDoc,
   getDocs,
   query,
+  serverTimestamp,
+  setDoc,
+  updateDoc,
   where,
 } from "firebase/firestore";
 import { db } from "../Firebase";
@@ -34,15 +36,55 @@ export default function Add_Friend() {
 
       const querySnapshot = await getDocs(q);
 
-      const users = querySnapshot.docs.map(doc => doc.data()).filter(user => !friendUIDs.includes(user.uid))  
-      
+      const users = querySnapshot.docs
+        .map((doc) => doc.data())
+        .filter((user) => !friendUIDs.includes(user.uid));
+
       setFriends(users);
     } catch (err) {}
   };
 
   useEffect(() => {
     loadUsers();
-  }, [currentUser.uid]);
+  }, [currentUser.uid, friends]);
+
+  const addFriend = async (f) => {
+    const combinedId =
+      currentUser.uid > f.uid
+        ? currentUser.uid + f.uid
+        : f.uid + currentUser.uid;
+
+    try {
+      const res = await getDoc(doc(db, "chats", combinedId));
+
+      if (!res.exists()) {
+        // create chats collection between two users if not already there
+        await setDoc(doc(db, "chats", combinedId), { messages: [] });
+      }
+
+      const userChatsDocRef = doc(db, "userChats", currentUser.uid);
+
+      if (!(await getDoc(userChatsDocRef)).exists()) {
+        // Create the userChats document if it doesn't exist
+        await setDoc(userChatsDocRef, {});
+      }
+
+      //add friend to the userChats collection
+      await updateDoc(doc(db, "userChats", currentUser.uid), {
+        [combinedId + ".userInfo"]: {
+          uid: f.uid,
+          displayName: f.displayName,
+          photoURL: f.photoURL,
+        },
+        [combinedId + ".date"]: serverTimestamp(),
+      });
+    } catch (err) {}
+
+    //remove it from the add friends list
+    setFriends((prevFriends) =>
+      prevFriends.filter((user) => user.uid !== f.uid)
+    );
+  };
 
   return (
     <div className="home">
@@ -67,7 +109,12 @@ export default function Add_Friend() {
                 <h1 className="friend__name">{friend.displayName}</h1>
               </div>
               <div>
-                <button className="friend__add--btn">Add +</button>
+                <button
+                  className="friend__add--btn"
+                  onClick={() => addFriend(friend)}
+                >
+                  Add +
+                </button>
               </div>
             </div>
           ))}
