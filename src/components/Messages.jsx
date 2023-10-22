@@ -8,6 +8,8 @@ export default function Messages() {
   const [messages, setMessages] = useState([])
   const { data } = useContext(ChatContext)
 
+  const [friendSelected, setFriendSelected] = useState(false);
+
   useEffect(() => {
     const unsub = onSnapshot(doc(db, "chats", data.chatId), (doc) => {
       doc.exists() && setMessages(doc.data().messages)

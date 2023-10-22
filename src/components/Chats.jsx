@@ -3,6 +3,7 @@ import { db } from "../Firebase";
 import { doc, onSnapshot } from "firebase/firestore";
 import { AuthContext } from "../context/AuthContext";
 import { ChatContext } from "../context/ChatContext";
+import Img from "../Assets/default.jpg"
 
 export default function Chats() {
   const [chats, setChats] = useState([]);
@@ -30,9 +31,9 @@ export default function Chats() {
 
   return (
     <div className="chats">
-      {Object.entries(chats)?.sort((a, b) => b[1].date - a[1].date).map((chat) => (
+      {chats && Object.entries(chats)?.sort((a, b) => b[1].date - a[1].date).map((chat) => (
         <div className="user__chat" key={chat[0]} onClick={() => handleSelect(chat[1].userInfo)}>
-          <img src={chat[1].userInfo.photoURL} alt="" />
+          {chat[1].userInfo && chat[1].userInfo.photoURL ? <img src={chat[1].userInfo.photoURL} alt="" /> : <img src={Img} />}
           <div className="user__chat--info2">
             <span className="user__chat--span">
               {chat[1].userInfo.displayName}

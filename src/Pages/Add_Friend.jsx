@@ -78,6 +78,22 @@ export default function Add_Friend() {
         },
         [combinedId + ".date"]: serverTimestamp(),
       });
+
+      const userChatsDocRef2 = doc(db, "userChats", f.uid);
+
+      if (!(await getDoc(userChatsDocRef2)).exists()) {
+        // Create the userChats document if it doesn't exist
+        await setDoc(userChatsDocRef2, {});
+      }
+
+      await updateDoc(doc(db, "userChats", f.uid), {
+        [combinedId + ".userInfo"]: {
+          uid: currentUser.uid,
+          displayName: currentUser.displayName,
+          photoURL: currentUser.photoURL,
+        },
+        [combinedId + ".date"]: serverTimestamp(),
+      });
     } catch (err) {}
 
     //remove it from the add friends list
