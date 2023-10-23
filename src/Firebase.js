@@ -5,13 +5,13 @@ import { getFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAlIU9xjOHtKSnJad_AXMmQtnKgvTMVM1g",
-  authDomain: "real-time-chat-app-85e3d.firebaseapp.com",
-  projectId: "real-time-chat-app-85e3d",
-  storageBucket: "real-time-chat-app-85e3d.appspot.com",
-  messagingSenderId: "880288161603",
-  appId: "1:880288161603:web:fc49f266c4c0dca6f719f6",
-  measurementId: "G-W00YRNTGNP"
+  apiKey: "AIzaSyC6UnqbZvfWCDmFwQDByukN5XYAA_E9SvI",
+  authDomain: "real-time-chat-app-5ce87.firebaseapp.com",
+  projectId: "real-time-chat-app-5ce87",
+  storageBucket: "real-time-chat-app-5ce87.appspot.com",
+  messagingSenderId: "495600211518",
+  appId: "1:495600211518:web:073c01f875b40f2a71236f",
+  measurementId: "G-669N8B2RD8"
   };
 
 // Initialize Firebase

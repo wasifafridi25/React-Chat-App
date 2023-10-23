@@ -123,19 +123,22 @@ export default function Add_Friend() {
             <h1 className="friends__nav--heading">Add Friend</h1>
           </div>
 
-          {loading
-            ? skeletonLoaders.map((_, index) => (
+          {loading ? (skeletonLoaders.map((_, index) => (
                 <div className="friends" key={index}>
                   <div className="friend__info">
-                    <div className="loading__friend--img"></div>
-                    <h1 className="loading__friend--name"></h1>
+                  <div className="loading__friend--img"></div>
+                  <div className="loading__friend--name"></div>
                   </div>
                   <div>
-                    <button className="friend__add--btn">Add +</button>
+                    <button
+                      className="friend__add--btn"
+                      
+                    >
+                      Add +
+                    </button>
                   </div>
                 </div>
-              ))
-            : friends.map((friend) => (
+              ))) : (friends.map((friend) => (
                 <div className="friends" key={friend.uid}>
                   <div className="friend__info">
                     <img src={friend.photoURL} alt="" className="friend__img" />
@@ -150,7 +153,7 @@ export default function Add_Friend() {
                     </button>
                   </div>
                 </div>
-              ))}
+              )))}
         </div>
       </div>
     </div>
