@@ -4,6 +4,11 @@
       @content;
     }
   }
+@mixin mobile2 {
+    @media screen and (max-width: 500px) {
+      @content;
+    }
+  }
   @mixin tablet {
     @media screen and (max-width: 768px) {
       @content;
@@ -281,7 +286,9 @@
 
       .chat__icons {
         display: flex;
-
+        .chat__icons--cam, .chat__icons--more{
+          cursor: not-allowed;
+        }
         img {
           width: 20px;
           height: 20px;
@@ -415,6 +422,10 @@
       padding: 60px 40px;
       background-color: #ddddf7;
 
+      @include tablet{
+        padding: 60px 8px;
+      }
+
       .friends__nav--left{
         display: flex;
         gap: 8px;
@@ -457,6 +468,8 @@
       justify-content: space-between;
       align-items: center;
       padding: 40px;
+
+      
 
       .friend__info{
         display: flex;

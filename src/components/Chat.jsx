@@ -15,11 +15,11 @@ export default function Chat() {
       <div className="chat__info">
         <span>{data.user?.displayName}</span>
         <div className="chat__icons">
-          <img src={Cam} alt="" />
+          <img src={Cam} alt="" className="chat__icons--cam"/>
           <Link to={"/add_friend"}>
             <img src={Add} alt="" />
           </Link>
-          <img src={More} alt="" />
+          <img src={More} alt="" className="chat__icons--more"/>
         </div>
       </div>
       <Messages />

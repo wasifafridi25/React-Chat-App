@@ -1,7 +1,12 @@
 import React, { useContext, useState } from "react";
-import Attach from "../Assets/attach.png";
 import Picture from "../Assets/img.png";
-import { Timestamp, arrayUnion, doc, serverTimestamp, updateDoc } from "firebase/firestore";
+import {
+  Timestamp,
+  arrayUnion,
+  doc,
+  serverTimestamp,
+  updateDoc,
+} from "firebase/firestore";
 import { v4 as uuid } from "uuid";
 import { db, storage } from "../Firebase";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
@@ -19,7 +24,7 @@ export default function Input() {
     if (img) {
       const storageRef = ref(storage, uuid());
       const uploadTask = uploadBytesResumable(storageRef, img);
-  
+
       uploadTask.on("state_changed", {
         // next: (snapshot) => {
         //   const progress =
@@ -67,22 +72,21 @@ export default function Input() {
     }
 
     await updateDoc(doc(db, "userChats", currentUser.uid), {
-      [data.chatId + ".lastMessage"] :{
-        text
+      [data.chatId + ".lastMessage"]: {
+        text,
       },
-      [data.chatId + ".date"] : serverTimestamp(),
-    })
+      [data.chatId + ".date"]: serverTimestamp(),
+    });
     await updateDoc(doc(db, "userChats", data.user.uid), {
-      [data.chatId + ".lastMessage"] :{
-        text
+      [data.chatId + ".lastMessage"]: {
+        text,
       },
-      [data.chatId + ".date"] : serverTimestamp(),
-    })
+      [data.chatId + ".date"]: serverTimestamp(),
+    });
 
-    setText("")
-    setImg(null)
+    setText("");
+    setImg(null);
   };
-  
 
   return (
     <div className="input">
@@ -91,22 +95,23 @@ export default function Input() {
         placeholder="Type something here..."
         onChange={(e) => setText(e.target.value)}
         value={text}
-        onKeyDown={e => {
-          e.key === 'Enter' && handleSend()
+        onKeyDown={(e) => {
+          e.key === "Enter" && handleSend();
         }}
       />
       <div className="send">
-        <input
-          type="file"
-          style={{ display: "none" }}
-          id="file"
-          onChange={(e) => setImg(e.target.files[0])}
-          
-        />
-        <label htmlFor="file">
-          <img src={Picture} alt="" />
-        </label>
-        <button onClick={handleSend}>Send</button>
+        
+          <input
+            type="file"
+            style={{ display: "none" }}
+            id="file"
+            onChange={(e) => setImg(e.target.files[0])}
+          />
+          <label htmlFor="file">
+            <img src={Picture} alt="" />
+          </label>
+          <button onClick={handleSend}>Send</button>
+        
       </div>
     </div>
   );

@@ -12,7 +12,7 @@ export default function Navbar() {
       if (currentUser && currentUser.photoURL) {
         setLoading(false);
       }
-    }, 1000);
+    }, 500);
   }, [currentUser]);
 
   return (
