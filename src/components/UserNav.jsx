@@ -1,6 +1,9 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import Back from "../Assets/back.png";
 
-export default function UserNav() {
+
+export default function UserNav({ title }) {
   return (
     <div className="friends__nav">
       <div className="friends__nav--left">
@@ -11,7 +14,7 @@ export default function UserNav() {
           <h1>Go Back</h1>
         </Link>
       </div>
-      <h1 className="friends__nav--heading">Add Friend</h1>
+      <h1 className="friends__nav--heading">{title}</h1>
     </div>
   );
 }
