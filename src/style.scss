@@ -444,6 +444,29 @@
 
       .user__profile--left{
         width: 40%;
+        position: relative;
+
+        .upload__img{
+          position: absolute;
+          bottom: 0%;
+          left: 25%;
+          color: #ddddf7;
+          transform: translateY(100%);
+          opacity: 0;
+          transition: all 300ms ease;
+
+          @include smallLaptop{
+            left: 10%;
+          }
+
+          @include smallTablet{
+            font-size: 12px
+          }
+          @include mobile{
+            left: 15%;
+          }
+
+        }
 
         .user__profile--img{
           width: 240px;
@@ -451,6 +474,21 @@
           border-radius: 50%;
           border: none;
           object-fit: cover;
+          transition: all 300ms ease;
+          
+
+          &:hover{
+            cursor: pointer;
+            filter: brightness(50%);
+            transform: scale(1.05);
+
+            ~ .upload__img{
+              opacity: 1;
+              transform: translateY(-10%);
+            }
+          }
+
+          
 
           @include smallLaptop{
             width: 160px;
