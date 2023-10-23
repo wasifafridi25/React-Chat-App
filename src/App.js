@@ -11,6 +11,7 @@ import {
 import { useContext } from "react";
 import { AuthContext } from "./context/AuthContext";
 import Add_Friend from "./Pages/Add_Friend";
+import Profile from "./Pages/Profile";
 
 function App() {
   const { currentUser } = useContext(AuthContext);
@@ -36,6 +37,14 @@ function App() {
           element={
             <ProtectedRoute>
               <Add_Friend />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/user_profile"
+          element={
+            <ProtectedRoute>
+              <Profile />
             </ProtectedRoute>
           }
         />
