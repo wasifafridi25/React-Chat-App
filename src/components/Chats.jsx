@@ -40,11 +40,9 @@ export default function Chats() {
               key={chat[0]}
               onClick={() => handleSelect(chat[1].userInfo)}
             >
-              {chat[1].userInfo && chat[1].userInfo.photoURL ? (
-                <img src={chat[1].userInfo.photoURL} alt="" />
-              ) : (
-                <img src={Img} />
-              )}
+              
+                <img src={chat[1].userInfo?.photoURL || Img} alt="" />
+              
               <div className="user__chat--info2">
                 <span className="user__chat--span">
                   {chat[1].userInfo.displayName}
